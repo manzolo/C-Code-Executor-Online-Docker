@@ -2,6 +2,11 @@
 
 ---
 
+![immagine](https://github.com/user-attachments/assets/d9ac7de0-0fe9-4165-a501-a162f48c5e15)
+
+![immagine](https://github.com/user-attachments/assets/aaaa2952-b805-4e27-99d8-c365710501e3)
+
+
 ## Project Description
 
 This web application lets users write, compile, and run C code right from their browser. It's built with Flask for the backend, Socket.IO for real-time communication, and Docker for an isolated execution environment. The user interface features an advanced code editor (CodeMirror) and an accordion-style layout for a better user experience.
@@ -31,8 +36,8 @@ Follow these steps to get the application running on your local machine.
 
 1.  **Clone the repository** (or make sure all files are in the same directory):
     ```bash
-    git clone <YOUR_REPOSITORY_URL>
-    cd <your_repository_folder_name>
+    git clone https://github.com/manzolo/C-Code-Executor-Online-Docker
+    cd C-Code-Executor-Online-Docker
     ```
 2.  **Ensure your files are correctly set up**:
     * `app.py`: The Flask-SocketIO backend.
