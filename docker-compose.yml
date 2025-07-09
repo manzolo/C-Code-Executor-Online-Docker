@@ -1,0 +1,13 @@
+services:
+  web_app:
+    build:
+      context: .
+      dockerfile: Dockerfile # Riferimento al Dockerfile che contiene la multi-stage build
+    ports:
+      - "8080:5000" # Mappa la porta 8080 dell'host alla porta 5000 del contenitore
+    # Il volume è utile in fase di sviluppo per modifiche live di Python/HTML.
+    # In produzione, si consiglia di non usarlo e copiare i file direttamente nell'immagine.
+    #volumes:
+    #  - .:/app
+    environment:
+      FLASK_DEBUG: 1 # Abilita il debug di Flask

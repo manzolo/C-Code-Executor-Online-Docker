@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compile and Run C Online</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/theme/dracula.min.css"> 
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: #00ff00;
+            font-family: 'Consolas', 'Monaco', monospace;
+            padding: 20px;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        h1 {
+            color: #0f0;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Accordion Styles */
+        .accordion-item {
+            width: 100%;
+            max-width: 800px;
+            margin-bottom: 15px;
+            border: 1px solid #0f0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .accordion-header {
+            background-color: #004400;
+            color: #fff;
+            padding: 10px 15px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+        }
+        .accordion-header:hover {
+            background-color: #005500;
+        }
+        .accordion-header::after {
+            content: '+';
+            font-size: 1.2em;
+            transition: transform 0.3s ease;
+        }
+        .accordion-header.active::after {
+            content: '-';
+            transform: rotate(0deg);
+        }
+        .accordion-content {
+            background-color: #000;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+        }
+        .accordion-content.show {
+            max-height: 500px; /* Max height when shown. Adjust if more is needed. */
+        }
+
+        /* CodeMirror styles - Adjust as needed */
+        .CodeMirror {
+            height: 300px; /* Fixed height for the editor */
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9em;
+            line-height: 1.2;
+            border: none; /* Border is on the accordion-item */
+        }
+        .CodeMirror-scroll {
+            background-color: #000; /* Ensures black background for the editor */
+            color: #00ff00; /* Editor text color */
+        }
+
+
+        .controls {
+            padding: 10px;
+            background-color: #000;
+            text-align: right;
+            border-top: 1px solid #0f0; /* Border between editor and button */
+        }
+        .controls button {
+            background-color: #0f0;
+            color: #000;
+            border: none;
+            padding: 8px 15px;
+            cursor: pointer;
+            border-radius: 3px;
+            font-weight: bold;
+            transition: background-color 0.2s;
+        }
+        .controls button:hover {
+            background-color: #0c0;
+        }
+        #output-console {
+            border: none;
+            background-color: transparent;
+            padding: 15px;
+            width: 100%;
+            height: 250px;
+            overflow: auto;
+            white-space: pre-wrap;
+            box-sizing: border-box;
+            color: #00ff00;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9em;
+            line-height: 1.1;
+        }
+        .error-message {
+            color: #ff0000;
+        }
+    </style>
+</head>
+<body>
+    <h1>Compile and Run Your C Code</h1>
+
+    <div class="accordion-item">
+        <div class="accordion-header active" id="code-header">Source Code</div>
+        <div class="accordion-content show" id="code-content">
+            <textarea id="c-code" placeholder="Write your C code here...">
+#include <stdio.h>
+#include <unistd.h> // For sleep
+
+int main() {
+    printf("Hello from your C program!\n");
+    for (int i = 0; i < 3; i++) { // Reduced to 3 for quick tests
+        printf("Counter: %d\n", i);
+        fflush(stdout); // Force output
+        sleep(1); // Wait 1 second
+    }
+    printf("C program finished.\n");
+    return 0;
+}
+</textarea>
+            <div class="controls">
+                <button id="compile-run-button">Compile and Run</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="accordion-item">
+        <div class="accordion-header" id="output-header">Output Console</div>
+        <div class="accordion-content" id="output-content">
+            <pre id="output-console">Awaiting code...</pre>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/clike/clike.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/edit/indent-on-tab.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/edit/matchbrackets.min.js"></script>
+
+
+    <script type="text/javascript">
+        var socket = io.connect('http://' + document.domain + ':' + location.port);
+        // Var cCodeTextarea = document.getElementById('c-code'); // We won't use the textarea directly anymore
+        var compileRunButton = document.getElementById('compile-run-button');
+        var outputConsole = document.getElementById('output-console');
+
+        // Accordion elements
+        var codeHeader = document.getElementById('code-header');
+        var codeContent = document.getElementById('code-content');
+        var outputHeader = document.getElementById('output-header');
+        var outputContent = document.getElementById('output-content');
+
+        // --- CodeMirror Initialization ---
+        var editor = CodeMirror.fromTextArea(document.getElementById("c-code"), {
+            lineNumbers: true, // Show line numbers
+            mode: "text/x-csrc", // Mode for C language
+            theme: "dracula", // Dark theme (ensure theme CSS is included)
+            indentUnit: 4, // 4 spaces for indentation
+            tabSize: 4, // Tab is 4 spaces
+            indentWithTabs: false, // Indent with spaces, not actual tabs
+            extraKeys: {
+                "Tab": function(cm) {
+                    // Indent on Tab press instead of changing focus
+                    if (cm.somethingSelected()) {
+                        cm.indentSelection("add");
+                    } else {
+                        cm.replaceSelection(Array(cm.getOption("indentUnit") + 1).join(" "), "end");
+                    }
+                }
+            },
+            matchBrackets: true, // Highlight matching brackets
+            autofocus: true // Editor receives focus on load
+        });
+
+        // Function to expand/collapse an accordion panel
+        function toggleAccordion(header, content, shouldOpen) {
+            if (shouldOpen === undefined) { // If shouldOpen is not specified, act as a normal toggle
+                shouldOpen = !content.classList.contains('show');
+            }
+
+            if (shouldOpen) {
+                header.classList.add('active');
+                content.classList.add('show');
+                content.style.maxHeight = content.scrollHeight + "px";
+            } else {
+                header.classList.remove('active');
+                content.classList.remove('show');
+                content.style.maxHeight = null;
+            }
+        }
+
+        // Event listeners for accordion headers
+        codeHeader.addEventListener('click', function() {
+            toggleAccordion(codeHeader, codeContent);
+            // When opening code, close output if it's open
+            if (codeContent.classList.contains('show')) {
+                toggleAccordion(outputHeader, outputContent, false); 
+            }
+        });
+
+        outputHeader.addEventListener('click', function() {
+            toggleAccordion(outputHeader, outputContent);
+            // When opening output, close code if it's open
+            if (outputContent.classList.contains('show')) {
+                toggleAccordion(codeHeader, codeContent, false); 
+            }
+        });
+
+
+        socket.on('connect', function() {
+            console.log('Connected to SocketIO server!');
+            outputConsole.textContent = "Connected. Ready to receive C code.";
+        });
+
+        socket.on('disconnect', function() {
+            console.log('Disconnected from SocketIO server!');
+            outputConsole.textContent += '\n--- Disconnected from server ---';
+        });
+
+        socket.on('compiler_output', function(msg) {
+            outputConsole.textContent += `\n[COMPILER] ${msg.data}`;
+            outputConsole.scrollTop = outputConsole.scrollHeight;
+        });
+
+        socket.on('runtime_output', function(msg) {
+            outputConsole.textContent += `\n[RUN] ${msg.data}`;
+            outputConsole.scrollTop = outputConsole.scrollHeight;
+        });
+        
+        socket.on('error_message', function(msg) {
+            outputConsole.textContent += `\n[ERROR] ${msg.data}`;
+            outputConsole.scrollTop = outputConsole.scrollHeight;
+            outputConsole.classList.add('error-message');
+        });
+
+        compileRunButton.addEventListener('click', function() {
+            outputConsole.textContent = "Compiling and executing...";
+            outputConsole.classList.remove('error-message');
+            
+            // Accordion logic on button click
+            // 1. Open output
+            toggleAccordion(outputHeader, outputContent, true); 
+            // 2. Close source code
+            toggleAccordion(codeHeader, codeContent, false); 
+            
+            // Get code from CodeMirror, not from textarea
+            var cCode = editor.getValue(); 
+            socket.emit('compile_and_run', { code: cCode });
+        });
+
+        // Initialization: CodeMirror doesn't have a scrollHeight on its initial container.
+        // We need to recalculate max-height for CSS transition after CodeMirror
+        // renders its interface. A small delay helps.
+        setTimeout(function() {
+            codeContent.style.maxHeight = codeContent.scrollHeight + "px";
+            // This is important to resize the editor if the window changes
+            editor.refresh();
+        }, 100); 
+
+    </script>
+</body>
+</html>
