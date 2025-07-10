@@ -2,10 +2,11 @@
 
 ---
 
-![immagine](https://github.com/user-attachments/assets/d9ac7de0-0fe9-4165-a501-a162f48c5e15)
+<img width="910" height="642" alt="immagine" src="https://github.com/user-attachments/assets/fd055c95-ff83-4a77-9960-0606886cca86" />
 
-![immagine](https://github.com/user-attachments/assets/aaaa2952-b805-4e27-99d8-c365710501e3)
+<img width="910" height="642" alt="immagine" src="https://github.com/user-attachments/assets/81721972-6d6e-40e0-b86d-99bf1e18390d" />
 
+<img width="910" height="642" alt="immagine" src="https://github.com/user-attachments/assets/3f1f30a6-d488-4334-a665-70286a4e0146" />
 
 ## Project Description
 
