@@ -37,6 +37,7 @@ RUN mkdir -p static/js static/css
 # Controlla la versione del tuo server Socket.IO per scegliere il client corretto.
 # Qui uso una versione comune che dovrebbe essere compatibile con Gunicorn-WebSocket.
 RUN curl -o static/js/socket.io.js https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.min.js
+RUN curl -o static/js/socket.io.js.map https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.min.js.map
 
 # Scarica CodeMirror e i suoi componenti
 # File CSS
@@ -46,7 +47,7 @@ RUN curl -o static/css/dracula.min.css https://cdnjs.cloudflare.com/ajax/libs/co
 # File JS
 RUN curl -o static/js/codemirror.min.js https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.js
 RUN curl -o static/js/clike.min.js https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/clike/clike.min.js
-RUN curl -o static/js/indent-on-tab.min.js https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/addon/edit/indentontab.min.js
+#RUN curl -o static/js/indent-on-tab.min.js https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/addon/edit/indentontab.min.js
 RUN curl -o static/js/matchbrackets.min.js https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/addon/edit/matchbrackets.min.js
 
 # --- FINE DOWNLOAD ASSET ---
