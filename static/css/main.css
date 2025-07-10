@@ -1,0 +1,151 @@
+body {
+    background-color: #1a1a1a;
+    color: #00ff00;
+    font-family: 'Consolas', 'Monaco', monospace;
+    padding: 20px;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+h1 {
+    color: #0f0;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Accordion Styles */
+.accordion-item {
+    width: 100%;
+    max-width: 800px;
+    margin-bottom: 15px;
+    border: 1px solid #0f0;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.accordion-header {
+    background-color: #004400;
+    color: #fff;
+    padding: 10px 15px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+}
+
+.accordion-header:hover {
+    background-color: #005500;
+}
+
+.accordion-header::after {
+    content: '+';
+    font-size: 1.2em;
+    transition: transform 0.3s ease;
+}
+
+.accordion-header.active::after {
+    content: '-';
+    transform: rotate(0deg);
+}
+
+.accordion-content {
+    background-color: #000;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out;
+}
+
+.accordion-content.show {
+    max-height: 500px;
+    /* Max height when shown. Adjust if more is needed. */
+}
+
+/* CodeMirror styles - Adjust as needed */
+.CodeMirror {
+    height: 300px;
+    /* Fixed height for the editor */
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-size: 0.9em;
+    line-height: 1.2;
+    border: none;
+    /* Border is on the accordion-item */
+}
+
+.CodeMirror-scroll {
+    background-color: #000;
+    /* Ensures black background for the editor */
+    color: #00ff00;
+    /* Editor text color */
+}
+
+
+.controls {
+    padding: 10px;
+    background-color: #000;
+    text-align: right;
+    border-top: 1px solid #0f0;
+    /* Border between editor and button */
+}
+
+.controls button {
+    background-color: #0f0;
+    color: #000;
+    border: none;
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 3px;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+.controls button:hover {
+    background-color: #0c0;
+}
+
+#output-console {
+    border: none;
+    background-color: transparent;
+    padding: 15px;
+    width: 100%;
+    height: 250px;
+    overflow: auto;
+    white-space: pre-wrap;
+    box-sizing: border-box;
+    color: #00ff00;
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-size: 0.9em;
+    line-height: 1.1;
+}
+
+.error-message {
+    color: #ff0000;
+}
+
+/* Styles for example list */
+#examples-list {
+    list-style: none; /* Remove default bullet points */
+    padding: 10px;
+    margin: 0;
+    background-color: #000; /* Match accordion content background */
+}
+
+.example-item {
+    padding: 8px 10px;
+    margin-bottom: 5px;
+    background-color: #002200; /* Slightly lighter green for items */
+    border: 1px solid #0f0;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s;
+    color: #00ff00; /* Text color for examples */
+}
+
+.example-item:hover {
+    background-color: #003300; /* Darker on hover */
+    border-color: #0c0;
+}

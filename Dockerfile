@@ -30,6 +30,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copia il backend Flask e la directory dei template
 COPY app.py .
 COPY templates ./templates
+COPY static ./static
 
 # Espone la porta su cui Gunicorn è in ascolto
 EXPOSE 5000
