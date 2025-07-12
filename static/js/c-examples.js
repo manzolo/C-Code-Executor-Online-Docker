@@ -1,23 +1,23 @@
 const codeExamples = [
-    // --- Existing Example 1 (All English) ---
-    {
-        id: 1,
-        title: "Basic Variables and Memory Addresses",
-        difficulty: "beginner",
-        category: "fundamentals",
-        keyconcepts: ["variables", "data types", "memory addresses", "sizeof"],
-        learningObjectives: [
-            "Understand fundamental data types in C",
-            "Visualize how variables occupy space in memory",
-            "Learn to use the & operator to get addresses",
-            "Grasp the importance of memory management"
-        ],
-        commonMistakes: [
-            "Confusing a variable's value with its address",
-            "Not understanding that each variable has a unique address",
-            "Forgetting that sizeof returns the size in bytes"
-        ],
-        code: `// Introduction to fundamental data types and their memory addresses
+  // --- Existing Example 1 (All English) ---
+  {
+    id: 1,
+    title: "Basic Variables and Memory Addresses",
+    difficulty: "beginner",
+    category: "fundamentals",
+    keyconcepts: ["variables", "data types", "memory addresses", "sizeof"],
+    learningObjectives: [
+      "Understand fundamental data types in C",
+      "Visualize how variables occupy space in memory",
+      "Learn to use the & operator to get addresses",
+      "Grasp the importance of memory management"
+    ],
+    commonMistakes: [
+      "Confusing a variable's value with its address",
+      "Not understanding that each variable has a unique address",
+      "Forgetting that sizeof returns the size in bytes"
+    ],
+    code: `// Introduction to fundamental data types and their memory addresses
 #include <stdio.h> // Standard input/output library
 
 int main() {
@@ -63,7 +63,7 @@ int main() {
     
     return 0; // Program exits successfully
 }`,
-        output: `=== BASIC VARIABLES AND MEMORY ===
+    output: `=== BASIC VARIABLES AND MEMORY ===
 
 Variable 'integerNumber':
   Value: 42
@@ -91,26 +91,26 @@ Variable 'doubleNumber':
   Type: double
 
 OBSERVATION: Every variable occupies a unique space in memory!`
-    },
-    // --- Existing Example 2 (All English) ---
-    {
-        id: 2,
-        title: "Pointers: Declaration, Assignment, Dereferencing",
-        difficulty: "beginner",
-        category: "pointers",
-        keyconcepts: ["pointer declaration", "address-of operator (&)", "dereference operator (*)", "dereferencing"],
-        learningObjectives: [
-            "Understand what a pointer is",
-            "Learn to declare and initialize pointers",
-            "Master the use of & and * operators",
-            "Understand the difference between an address and the pointed-to value"
-        ],
-        commonMistakes: [
-            "Confusing * in declaration with * in dereferencing",
-            "Forgetting to initialize pointers",
-            "Not understanding that a pointer is also a variable with its own address"
-        ],
-        code: `// Exploring how pointers 'point' to variables and how to access their values
+  },
+  // --- Existing Example 2 (All English) ---
+  {
+    id: 2,
+    title: "Pointers: Declaration, Assignment, Dereferencing",
+    difficulty: "beginner",
+    category: "pointers",
+    keyconcepts: ["pointer declaration", "address-of operator (&)", "dereference operator (*)", "dereferencing"],
+    learningObjectives: [
+      "Understand what a pointer is",
+      "Learn to declare and initialize pointers",
+      "Master the use of & and * operators",
+      "Understand the difference between an address and the pointed-to value"
+    ],
+    commonMistakes: [
+      "Confusing * in declaration with * in dereferencing",
+      "Forgetting to initialize pointers",
+      "Not understanding that a pointer is also a variable with its own address"
+    ],
+    code: `// Exploring how pointers 'point' to variables and how to access their values
 #include <stdio.h> // Standard input/output library
 
 int main() {
@@ -154,7 +154,7 @@ int main() {
     
     return 0; // Program exits successfully
 }`,
-        output: `=== UNDERSTANDING POINTERS ===
+    output: `=== UNDERSTANDING POINTERS ===
 
 Variable 'myNumber':
   Value: 150
@@ -175,26 +175,26 @@ After modification via pointer:
   Dereferenced value (*pointerToNumber): 250
 
 KEY CONCEPT: A pointer is a variable that holds the address of another variable!`
-    },
-    // --- New Example 3 (All English) ---
-    {
-        id: 3,
-        title: "Pointers and Arrays: Relationship and Arithmetic",
-        difficulty: "intermediate",
-        category: "pointers",
-        keyconcepts: ["arrays and pointers", "pointer arithmetic", "indexing", "array[i] and *(array+i) equivalence"],
-        learningObjectives: [
-            "Understand the intrinsic relationship between arrays and pointers in C",
-            "Learn how pointer arithmetic works (e.g., `ptr + N`)",
-            "Grasp the equivalence between array indexing (`array[i]`) and pointer dereferencing (`*(array + i)`)",
-            "Visualize how array elements are laid out contiguously in memory"
-        ],
-        commonMistakes: [
-            "Confusing arrays and pointers as if they are the same thing (an array name is a *constant* pointer)",
-            "Not understanding how pointer arithmetic scales by the size of the data type",
-            "Forgetting that `array[i]` is just syntactic sugar for `*(array + i)`"
-        ],
-        code: `// Explore how arrays are intrinsically linked to pointers and pointer arithmetic.
+  },
+  // --- New Example 3 (All English) ---
+  {
+    id: 3,
+    title: "Pointers and Arrays: Relationship and Arithmetic",
+    difficulty: "intermediate",
+    category: "pointers",
+    keyconcepts: ["arrays and pointers", "pointer arithmetic", "indexing", "array[i] and *(array+i) equivalence"],
+    learningObjectives: [
+      "Understand the intrinsic relationship between arrays and pointers in C",
+      "Learn how pointer arithmetic works (e.g., `ptr + N`)",
+      "Grasp the equivalence between array indexing (`array[i]`) and pointer dereferencing (`*(array + i)`)",
+      "Visualize how array elements are laid out contiguously in memory"
+    ],
+    commonMistakes: [
+      "Confusing arrays and pointers as if they are the same thing (an array name is a *constant* pointer)",
+      "Not understanding how pointer arithmetic scales by the size of the data type",
+      "Forgetting that `array[i]` is just syntactic sugar for `*(array + i)`"
+    ],
+    code: `// Explore how arrays are intrinsically linked to pointers and pointer arithmetic.
 #include <stdio.h>  // Include standard input/output library
 #include <stddef.h> // For ptrdiff_t
 
@@ -251,7 +251,7 @@ int main() {
     
     return 0; // Program exits successfully
 }`,
-        output: `=== POINTERS AND ARRAYS ===
+    output: `=== POINTERS AND ARRAYS ===
 
 Fundamental Equivalence:
   Base address of array 'scores': 0x7fff5fbff690
@@ -287,27 +287,27 @@ Modifying scores[2] from 78 to 80 via pointer:
   New scores[2] value: 80
 
 KEY CONCEPT: array[i] is equivalent to *(array + i)!`
-    },
-    // --- New Example 4 (All English) ---
-    {
-        id: 4,
-        title: "Pointers and Strings",
-        difficulty: "intermediate",
-        category: "strings",
-        keyconcepts: ["C strings", "null terminator", "character pointers", "string iteration", "string copying"],
-        learningObjectives: [
-            "Understand how strings are represented and manipulated in C",
-            "Learn the crucial role of the null terminator (`\\0`) in C strings",
-            "Master iterating through strings using character pointers",
-            "Implement basic string operations manually (e.g., copying)"
-        ],
-        commonMistakes: [
-            "Forgetting the null terminator when creating/manipulating strings",
-            "Not handling pointer increments correctly, leading to out-of-bounds access",
-            "Confusing `char array[]` with `char *ptr` for string literals (modifiability differences)",
-            "Buffer overflows when copying strings without adequate size checks"
-        ],
-        code: `// This example shows how pointers are used to manipulate strings in C.
+  },
+  // --- New Example 4 (All English) ---
+  {
+    id: 4,
+    title: "Pointers and Strings",
+    difficulty: "intermediate",
+    category: "strings",
+    keyconcepts: ["C strings", "null terminator", "character pointers", "string iteration", "string copying"],
+    learningObjectives: [
+      "Understand how strings are represented and manipulated in C",
+      "Learn the crucial role of the null terminator (`\\0`) in C strings",
+      "Master iterating through strings using character pointers",
+      "Implement basic string operations manually (e.g., copying)"
+    ],
+    commonMistakes: [
+      "Forgetting the null terminator when creating/manipulating strings",
+      "Not handling pointer increments correctly, leading to out-of-bounds access",
+      "Confusing `char array[]` with `char *ptr` for string literals (modifiability differences)",
+      "Buffer overflows when copying strings without adequate size checks"
+    ],
+    code: `// This example shows how pointers are used to manipulate strings in C.
 #include <stdio.h>  // For printf
 #include <string.h> // For strlen (demonstrative purposes)
 
@@ -381,7 +381,7 @@ int main() {
     
     return 0; // Program exits successfully
 }`,
-        output: `=== POINTERS AND STRINGS ===
+    output: `=== POINTERS AND STRINGS ===
 
 Original string: "Hello, Pointers!"
 String length (excluding null): 16 characters
@@ -416,28 +416,28 @@ Searching for character 'o' in the string:
   Character 'o' found at position 4 (address: 0x7fff5fbff684)
 
 KEY CONCEPT: C strings are character arrays terminated by a '\\0' (null character)!`
-    },
-    // --- New Example 5 (All English) ---
-    {
-        id: 5,
-        title: "NULL Pointers and Dangling Pointers",
-        difficulty: "beginner",
-        category: "pointer_safety",
-        keyconcepts: ["NULL", "null pointer", "dangling pointer", "initialization", "memory safety", "segmentation fault"],
-        learningObjectives: [
-            "Understand the purpose and importance of a `NULL` pointer",
-            "Learn to initialize pointers to `NULL` for safety",
-            "Identify the risks of dereferencing a `NULL` pointer (e.g., segmentation fault)",
-            "Grasp the concept of a 'dangling pointer' and how to avoid it",
-            "Learn to set pointers to `NULL` after freeing memory"
-        ],
-        commonMistakes: [
-            "Forgetting to initialize pointers (leading to wild pointers)",
-            "Attempting to dereference a `NULL` pointer",
-            "Using a pointer after the memory it pointed to has been freed (use-after-free vulnerability)",
-            "Not checking `malloc()`'s return value for `NULL`"
-        ],
-        code: `// This example demonstrates the importance of NULL pointers and the danger of dangling pointers.
+  },
+  // --- New Example 5 (All English) ---
+  {
+    id: 5,
+    title: "NULL Pointers and Dangling Pointers",
+    difficulty: "beginner",
+    category: "pointer_safety",
+    keyconcepts: ["NULL", "null pointer", "dangling pointer", "initialization", "memory safety", "segmentation fault"],
+    learningObjectives: [
+      "Understand the purpose and importance of a `NULL` pointer",
+      "Learn to initialize pointers to `NULL` for safety",
+      "Identify the risks of dereferencing a `NULL` pointer (e.g., segmentation fault)",
+      "Grasp the concept of a 'dangling pointer' and how to avoid it",
+      "Learn to set pointers to `NULL` after freeing memory"
+    ],
+    commonMistakes: [
+      "Forgetting to initialize pointers (leading to wild pointers)",
+      "Attempting to dereference a `NULL` pointer",
+      "Using a pointer after the memory it pointed to has been freed (use-after-free vulnerability)",
+      "Not checking `malloc()`'s return value for `NULL`"
+    ],
+    code: `// This example demonstrates the importance of NULL pointers and the danger of dangling pointers.
 #include <stdio.h>  // For printf
 #include <stdlib.h> // For malloc and free (used to demonstrate dangling pointers)
 
@@ -494,7 +494,7 @@ int main() {
 
     return 0; // Program exits successfully
 }`,
-        output: `=== NULL POINTERS AND SAFETY ===
+    output: `=== NULL POINTERS AND SAFETY ===
 
 Pointer 'initializedNullPtr':
   Value (address it holds): 0x0
@@ -513,26 +513,26 @@ Pointer 'danglingPtr' (before free):
   After setting danglingPtr = NULL: 0x0 (Now it's safe!)
 
 KEY CONCEPT: Always initialize pointers, and set them to NULL after use or free!`
-    },
-    // --- New Example 6 (All English) ---
-    {
-        id: 6,
-        title: "The `void*` (Generic) Pointer",
-        difficulty: "intermediate",
-        category: "pointers",
-        keyconcepts: ["void pointer", "generic pointer", "pointer casting", "flexibility", "memory allocation"],
-        learningObjectives: [
-            "Understand the role of `void*` as a generic pointer that can point to data of any type",
-            "Learn when and why to use a `void*` (e.g., for functions that handle any data type)",
-            "Understand the necessity of an explicit cast when dereferencing a `void*`",
-            "Identify common use cases for `void*` (e.g., `malloc`, `memcpy`, `qsort`)"
-        ],
-        commonMistakes: [
-            "Attempting to dereference a `void*` without first explicitly casting it to the correct type",
-            "Performing arithmetic on a `void*` directly (this is not allowed by the C standard)",
-            "Not understanding that `void*` does not 'know' the size of the data it points to"
-        ],
-        code: `// This example demonstrates the 'void*' pointer, a generic pointer type.
+  },
+  // --- New Example 6 (All English) ---
+  {
+    id: 6,
+    title: "The `void*` (Generic) Pointer",
+    difficulty: "intermediate",
+    category: "pointers",
+    keyconcepts: ["void pointer", "generic pointer", "pointer casting", "flexibility", "memory allocation"],
+    learningObjectives: [
+      "Understand the role of `void*` as a generic pointer that can point to data of any type",
+      "Learn when and why to use a `void*` (e.g., for functions that handle any data type)",
+      "Understand the necessity of an explicit cast when dereferencing a `void*`",
+      "Identify common use cases for `void*` (e.g., `malloc`, `memcpy`, `qsort`)"
+    ],
+    commonMistakes: [
+      "Attempting to dereference a `void*` without first explicitly casting it to the correct type",
+      "Performing arithmetic on a `void*` directly (this is not allowed by the C standard)",
+      "Not understanding that `void*` does not 'know' the size of the data it points to"
+    ],
+    code: `// This example demonstrates the 'void*' pointer, a generic pointer type.
 #include <stdio.h>  // For printf
 #include <stdlib.h> // For malloc (common usage of void*)
 
@@ -588,7 +588,7 @@ int main() {
 
     return 0; // Program exits successfully
 }`,
-        output: `=== THE VOID* (GENERIC) POINTER ===
+    output: `=== THE VOID* (GENERIC) POINTER ===
 
 Generic pointer pointing to an INT (value: 10):
   Address stored: 0x7fff5fbff6ac
@@ -607,30 +607,30 @@ NOTE: You cannot perform pointer arithmetic directly on a \`void*\`.
   Example: ((char*)genericPtr) + 1; (to advance by 1 byte)
 
 Common use of \`void*\` with \`malloc()\`:` +
-        // Note: Actual malloc output address will vary
-        `  Dynamically allocated memory with malloc (address: 0x7f8d6c000a60, value: 77)
+      // Note: Actual malloc output address will vary
+      `  Dynamically allocated memory with malloc (address: 0x7f8d6c000a60, value: 77)
 
 KEY CONCEPT: \`void*\` is versatile but requires explicit casts and care!`
-    },
-    // --- New Example 7 (All English) ---
-    {
-        id: 7,
-        title: "Pointer to Pointer (Double Pointer)",
-        difficulty: "advanced",
-        category: "pointers",
-        keyconcepts: ["double pointer", "address of a pointer", "multiple dereferencing", "passing a pointer by address"],
-        learningObjectives: [
-            "Understand the syntax and meaning of a pointer to a pointer (`**`)",
-            "Learn to navigate and dereference through multiple levels of pointers",
-            "Grasp when a double pointer is useful (e.g., modifying a pointer inside a function, arrays of pointers)",
-            "Visualize the chain of addresses in memory"
-        ],
-        commonMistakes: [
-            "Confusing `*ptr` with `**pptr` during dereferencing",
-            "Errors in assigning values or addresses to the correct level of indirection",
-            "Forgetting the levels of indirection when trying to access the final value"
-        ],
-        code: `// This example demonstrates a pointer to a pointer, also known as a double pointer.
+  },
+  // --- New Example 7 (All English) ---
+  {
+    id: 7,
+    title: "Pointer to Pointer (Double Pointer)",
+    difficulty: "advanced",
+    category: "pointers",
+    keyconcepts: ["double pointer", "address of a pointer", "multiple dereferencing", "passing a pointer by address"],
+    learningObjectives: [
+      "Understand the syntax and meaning of a pointer to a pointer (`**`)",
+      "Learn to navigate and dereference through multiple levels of pointers",
+      "Grasp when a double pointer is useful (e.g., modifying a pointer inside a function, arrays of pointers)",
+      "Visualize the chain of addresses in memory"
+    ],
+    commonMistakes: [
+      "Confusing `*ptr` with `**pptr` during dereferencing",
+      "Errors in assigning values or addresses to the correct level of indirection",
+      "Forgetting the levels of indirection when trying to access the final value"
+    ],
+    code: `// This example demonstrates a pointer to a pointer, also known as a double pointer.
 #include <stdio.h> // For printf
 
 int main() {
@@ -677,7 +677,7 @@ int main() {
 
     return 0; // Program exits successfully
 }`,
-        output: `=== POINTER TO POINTER (DOUBLE POINTER) ===
+    output: `=== POINTER TO POINTER (DOUBLE POINTER) ===
 
 Variable 'originalValue':
   Value: 100
@@ -702,28 +702,28 @@ After modification via double pointer:
 
 KEY CONCEPT: A double pointer adds a level of indirection,
   useful for modifying pointers themselves or for complex data structures.`
-    },
-    // --- New Example 8 (All English) ---
-    {
-        id: 8,
-        title: "Dynamic Memory Allocation: `malloc` and `free`",
-        difficulty: "intermediate",
-        category: "memory_management",
-        keyconcepts: ["dynamic memory", "heap", "malloc", "free", "memory leak", "NULL check"],
-        learningObjectives: [
-            "Understand the concept of dynamic memory allocation and its necessity",
-            "Learn how to allocate memory using `malloc()`",
-            "Learn how to release allocated memory using `free()`",
-            "Recognize the importance of `NULL` checks after `malloc()` calls",
-            "Identify and prevent memory leaks"
-        ],
-        commonMistakes: [
-            "Forgetting to call `free()` on allocated memory, leading to memory leaks",
-            "Attempting to use memory that has already been freed (use-after-free vulnerability)",
-            "Not checking `malloc()`'s return value for `NULL`",
-            "Allocating insufficient memory for the data type or expected number of elements"
-        ],
-        code: `// This example demonstrates dynamic memory allocation using malloc and its release using free.
+  },
+  // --- New Example 8 (All English) ---
+  {
+    id: 8,
+    title: "Dynamic Memory Allocation: `malloc` and `free`",
+    difficulty: "intermediate",
+    category: "memory_management",
+    keyconcepts: ["dynamic memory", "heap", "malloc", "free", "memory leak", "NULL check"],
+    learningObjectives: [
+      "Understand the concept of dynamic memory allocation and its necessity",
+      "Learn how to allocate memory using `malloc()`",
+      "Learn how to release allocated memory using `free()`",
+      "Recognize the importance of `NULL` checks after `malloc()` calls",
+      "Identify and prevent memory leaks"
+    ],
+    commonMistakes: [
+      "Forgetting to call `free()` on allocated memory, leading to memory leaks",
+      "Attempting to use memory that has already been freed (use-after-free vulnerability)",
+      "Not checking `malloc()`'s return value for `NULL`",
+      "Allocating insufficient memory for the data type or expected number of elements"
+    ],
+    code: `// This example demonstrates dynamic memory allocation using malloc and its release using free.
 #include <stdio.h>  // For printf
 #include <stdlib.h> // For malloc and free
 
@@ -787,7 +787,7 @@ int main() {
 
     return 0; // Program exits successfully
 }`,
-        output: `=== DYNAMIC MEMORY ALLOCATION (malloc/free) ===
+    output: `=== DYNAMIC MEMORY ALLOCATION (malloc/free) ===
 
 Successfully allocated memory for an integer.
   Allocated address: 0x7f8d6c000a60 (Address will vary)
@@ -806,6 +806,110 @@ Memory for single integer freed.
 Memory for array freed.
 
 KEY CONCEPT: \`malloc\` requests memory, \`free\` releases it! Always pair them!`
-    }
-    // You can add more examples here following this structure!
+  },
+  // You can add more examples here following this structure!
+  {
+    id: 9,
+    title: "Pointers: Pass by Reference and Variable Modification",
+    difficulty: "beginner",
+    category: "pointers",
+    keyconcepts: ["pointers", "pass by reference", "address-of operator (&)", "dereference operator (*)", "modifying variables via pointers", "functions with pointers"],
+    learningObjectives: [
+      "Understand how pointers enable modification of variables outside a function's scope",
+      "Learn to use the '&' operator to get a variable's memory address",
+      "Learn to use the '*' operator to dereference a pointer and access/modify the pointed-to value",
+      "Grasp the concept of 'pass by reference' in C"
+    ],
+    commonMistakes: [
+      "Forgetting to pass the variable's address (using '&') when the function expects a pointer",
+      "Forgetting to dereference the pointer (using '*') inside the function to modify the value",
+      "Confusing the pointer itself with the value it points to",
+      "Not initializing pointers or assigning them invalid addresses"
+    ],
+    code: `// This program demonstrates how pointers allow modifying a variable
+// by passing its address to a function.
+#include <stdio.h> // Standard input/output library
+
+// Function 'increment': accepts a pointer to an integer.
+// This means it receives the ADDRESS of an integer variable, not its value.
+void increment(int *p) {
+    printf("  Inside 'increment':\\n");
+    printf("    Address received (value of p): %p\\n", (void*)p);
+    printf("    Value pointed to by p (*p) before modification: %d\\n", *p);
+
+    // *p = *p + 1;
+    // This line DEREFERENCES pointer 'p' to access the value of the original variable
+    // it points to, then increments it by 1.
+    // In essence, it's like writing 'x = x + 1;' but operating directly on the memory
+    // of variable 'x' which resides in the 'main' function.
+    *p = *p + 1;
+
+    printf("    Value pointed to by p (*p) after modification: %d\\n", *p);
+    printf("  Exiting 'increment'.\\n\\n");
+}
+
+int main(void) {
+    int x = 5;       // Declaration and initialization of an integer variable 'x'
+    int *y = NULL;   // Declaration of an integer pointer 'y', initialized to NULL
+
+    // Assign to 'y' the memory address of variable 'x'.
+    // Now 'y' "points" to 'x'.
+    y = &x; 
+
+    printf("=== POINTERS AND PASS BY REFERENCE DEMONSTRATION ===\\n\\n");
+
+    printf("Beginning 'main':\\n");
+    printf("  Initial value of x: %d\\n", x);
+    printf("  Address of x: %p\\n", (void*)&x);
+    printf("  Value of pointer y (address it points to): %p\\n", (void*)y);
+    printf("  Value pointed to by y (*y): %d\\n\\n", *y);
+
+    // Modify the value of 'x' using pointer 'y'.
+    // *y = 10; means "put 10 into the memory location pointed to by y".
+    // Since y points to x, this directly modifies the value of x.
+    printf("Modifying x via pointer y:\\n");
+    *y = 10;
+    printf("  New value of x: %d\\n", x);
+    printf("  New value pointed to by y (*y): %d\\n\\n", *y);
+    
+    // Call the 'increment' function, passing the address of 'x' (which is the value of 'y').
+    // This way, the 'increment' function can directly modify 'x'.
+    printf("Calling 'increment' function, passing the address of x (i.e., y):\\n");
+    increment(y); // We pass the pointer 'y' (which contains the address of 'x')
+
+    printf("After calling 'increment':\\n");
+    printf("  New value of x after increment: %d\\n", x);
+    printf("  Value pointed to by y (*y) after increment: %d\\n\\n", *y);
+
+    printf("KEY CONCEPT: Passing a pointer to a function allows modifying the\\n");
+    printf("original variable, not just a copy of it!\\n");
+
+    return 0; // Program exits successfully
+}`,
+    output: `=== POINTERS AND PASS BY REFERENCE DEMONSTRATION ===
+
+Beginning 'main':
+  Initial value of x: 5
+  Address of x: 0x7fff5fbff6ac
+  Value of pointer y (address it points to): 0x7fff5fbff6ac
+  Value pointed to by y (*y): 5
+
+Modifying x via pointer y:
+  New value of x: 10
+  New value pointed to by y (*y): 10
+
+Calling 'increment' function, passing the address of x (i.e., y):
+  Inside 'increment':
+    Address received (value of p): 0x7fff5fbff6ac
+    Value pointed to by p (*p) before modification: 10
+    Value pointed to by p (*p) after modification: 11
+  Exiting 'increment'.
+
+After calling 'increment':
+  New value of x after increment: 11
+  Value pointed to by y (*y) after increment: 11
+
+KEY CONCEPT: Passing a pointer to a function allows modifying the
+original variable, not just a copy of it!`
+  }
 ];
